@@ -27,3 +27,32 @@ print(df.isnull().sum())
 df.to_csv("cleaned_medicine_data.csv",index = False)
 print(df)
 print("Cleaned Data Saved Successfully!")
+
+
+
+
+
+# DAY-4
+
+print("Total number of medicine: ", df.shape[0])
+
+
+
+print("Medicine Type: \n",df["Type"].value_counts())
+
+
+print("Price statistic: \n", df["Price"].describe())
+
+
+medicine_name = input("Enter medicine name: ").strip().lower()
+
+found = df[df["Name"].str.lower() == medicine_name]
+
+if not found.empty:
+    print(found)
+else:
+    print("Medicine not found")
+
+df.drop_duplicates(subset=["Name"],keep="first",inplace=True)
+df.to_csv("cleaned_medicine_data.csv",index=False)
+print("Cleaned Data Saved Successfully!")
